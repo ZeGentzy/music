@@ -1,0 +1,28 @@
+#!/bin/bash
+
+trim()
+{
+    local trimmed="$1"
+
+    # Strip leading space.
+    trimmed="${trimmed## }"
+    # Strip trailing space.
+    trimmed="${trimmed%% }"
+
+    echo "$trimmed"
+}
+
+for i in ./*
+do
+    [[ "$i" == "./lyrics" ]] && continue
+    new="$(echo "$i" | sed "s/ah-/Artificial Heart - /g")"
+    new="$(echo "$new" | sed "s/taw1-/Thing A Day 1 - /g")"
+    new="$(echo "$new" | sed "s/taw2-/Thing A Day 2 - /g")"
+    new="$(echo "$new" | sed "s/taw3-/Thing A Day 3 - /g")"
+    new="$(echo "$new" | sed "s/taw4-/Thing A Day 4 - /g")"
+    new="$(echo "$new" | sed "s/taw5-/Thing A Day 5 - /g")"
+    new="$(echo "$new" | sed "s/portal-/Portal Music - /g")"
+    new="$(echo "$new" | sed "s/ss-/Solid State - /g")"
+
+    mv "$i" "$new"
+done
